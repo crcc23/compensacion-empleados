@@ -17,6 +17,7 @@ import {
 import { employeeProgress, performanceIndicators, calculateCompensation } from '@/data/mockData';
 import EmployeeDetailsSection from './EmployeeDetailsSection';
 import ValidationModal from './ValidationModal';
+import WeightConfigurationView from './WeightConfigurationView';
 
 const AdminDashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,6 +25,7 @@ const AdminDashboard = () => {
   const [selectedEmployee, setSelectedEmployee] = useState<any>(null);
   const [showDetailsSection, setShowDetailsSection] = useState(false);
   const [showValidationModal, setShowValidationModal] = useState(false);
+  const [showWeightConfig, setShowWeightConfig] = useState(false);
 
   // Mock employee data
   const employees = [
@@ -74,6 +76,15 @@ const AdminDashboard = () => {
     setShowDetailsSection(false);
     setSelectedEmployee(null);
   };
+
+  // Show Weight Configuration View
+  if (showWeightConfig) {
+    return (
+      <WeightConfigurationView 
+        onClose={() => setShowWeightConfig(false)}
+      />
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -138,7 +149,11 @@ const AdminDashboard = () => {
           <CardTitle className="flex items-center justify-between">
             <span className="text-xl text-slate-800">Gestión de Empleados</span>
             <div className="flex gap-2">
-              <Button variant="outline" size="sm">
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => setShowWeightConfig(true)}
+              >
                 <Settings className="w-4 h-4 mr-2" />
                 Configurar Pesos
               </Button>
