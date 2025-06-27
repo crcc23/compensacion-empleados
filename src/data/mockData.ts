@@ -4,42 +4,42 @@ import { PerformanceIndicator, EmployeeProgress, CompensationData } from '@/type
 export const performanceIndicators: PerformanceIndicator[] = [
   {
     id: '1',
-    name: 'Cursos Completados',
+    name: 'Formación Técnica y Continua',
     weight: 25,
     maxValue: 12,
-    description: 'Cursos de capacitación completados durante el período',
+    description: 'Cursos de capacitación interna y externa completados durante el período',
     category: 'courses'
   },
   {
     id: '2',
-    name: 'Problemas Resueltos',
+    name: 'Gestión de Incidencias y Resolución de Casos',
     weight: 30,
     maxValue: 50,
-    description: 'Tickets o problemas resueltos satisfactoriamente',
+    description: 'Casos o tickets resueltos satisfactoriamente en los sistemas internos',
     category: 'tickets'
   },
   {
     id: '3',
-    name: 'Certificaciones',
+    name: 'Certificaciones Profesionales Reconocidas',
     weight: 20,
     maxValue: 3,
-    description: 'Certificaciones profesionales obtenidas',
+    description: 'Certificaciones o títulos acreditados obtenidos durante el período evaluado',
     category: 'certifications'
   },
   {
     id: '4',
-    name: 'Participación Interna',
+    name: 'Contribución en Proyectos Institucionales',
     weight: 15,
     maxValue: 8,
-    description: 'Participación en actividades y proyectos internos',
+    description: 'Participación activa en comités, actividades, eventos o iniciativas internas',
     category: 'activities'
   },
   {
     id: '5',
-    name: 'Evaluación de Desempeño',
+    name: 'Resultados de Evaluación Anual de Desempeño',
     weight: 10,
     maxValue: 100,
-    description: 'Puntuación de evaluación de desempeño anual',
+    description: 'Puntuación obtenida en la evaluación formal del desempeño individual',
     category: 'evaluation'
   }
 ];

@@ -155,7 +155,7 @@ const AdminDashboard = () => {
                 onClick={() => setShowWeightConfig(true)}
               >
                 <Settings className="w-4 h-4 mr-2" />
-                Configurar Pesos
+                Configuración de Indicadores
               </Button>
               <Button className="bg-[#56aaba] hover:bg-[#4a96a3]" size="sm">
                 <Download className="w-4 h-4 mr-2" />
