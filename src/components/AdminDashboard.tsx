@@ -16,10 +16,15 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { employeeProgress, performanceIndicators, calculateCompensation } from '@/data/mockData';
+import EmployeeDetailsModal from './EmployeeDetailsModal';
+import ValidationModal from './ValidationModal';
 
 const AdminDashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('all');
+  const [selectedEmployee, setSelectedEmployee] = useState<any>(null);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showValidationModal, setShowValidationModal] = useState(false);
 
   // Mock employee data
   const employees = [
@@ -50,6 +55,21 @@ const AdminDashboard = () => {
   const averageCompensation = Math.round(
     employeeStats.reduce((sum, emp) => sum + emp.compensation, 0) / employeeStats.length
   );
+
+  const handleViewDetails = (employee: any) => {
+    setSelectedEmployee(employee);
+    setShowDetailsModal(true);
+  };
+
+  const handleValidate = (employee: any) => {
+    setSelectedEmployee(employee);
+    setShowValidationModal(true);
+  };
+
+  const handleValidationComplete = () => {
+    // Refresh data after validation
+    console.log('Validation completed, refreshing data...');
+  };
 
   return (
     <div className="space-y-6">
@@ -188,10 +208,18 @@ const AdminDashboard = () => {
                     </div>
 
                     <div className="flex gap-2">
-                      <Button variant="outline" size="sm">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleViewDetails(employee)}
+                      >
                         Ver Detalles
                       </Button>
-                      <Button size="sm" className="bg-[#6a3687] hover:bg-[#5a2f73]">
+                      <Button 
+                        size="sm" 
+                        className="bg-[#6a3687] hover:bg-[#5a2f73]"
+                        onClick={() => handleValidate(employee)}
+                      >
                         Validar
                       </Button>
                     </div>
@@ -239,6 +267,20 @@ const AdminDashboard = () => {
           </CardContent>
         </Card>
       </div>
+
+      {/* Modals */}
+      <EmployeeDetailsModal
+        employee={selectedEmployee}
+        isOpen={showDetailsModal}
+        onClose={() => setShowDetailsModal(false)}
+      />
+
+      <ValidationModal
+        employee={selectedEmployee}
+        isOpen={showValidationModal}
+        onClose={() => setShowValidationModal(false)}
+        onValidationComplete={handleValidationComplete}
+      />
     </div>
   );
 };
