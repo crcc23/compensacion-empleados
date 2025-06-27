@@ -44,7 +44,7 @@ const WeightConfigurationView: React.FC<WeightConfigurationViewProps> = ({ onClo
     { value: 'certifications', label: 'Certificaciones' },
     { value: 'activities', label: 'Actividades' },
     { value: 'evaluation', label: 'Evaluación' }
-  ];
+  ] as const;
 
   const totalWeight = indicators.reduce((sum, indicator) => sum + indicator.weight, 0);
 
@@ -195,7 +195,7 @@ const WeightConfigurationView: React.FC<WeightConfigurationViewProps> = ({ onClo
                           <Label htmlFor="category">Categoría</Label>
                           <Select 
                             value={editForm.category} 
-                            onValueChange={(value) => setEditForm(prev => ({ ...prev, category: value }))}
+                            onValueChange={(value) => setEditForm(prev => ({ ...prev, category: value as PerformanceIndicator['category'] }))}
                           >
                             <SelectTrigger>
                               <SelectValue />
@@ -320,7 +320,7 @@ const WeightConfigurationView: React.FC<WeightConfigurationViewProps> = ({ onClo
                 <Label htmlFor="new-category">Categoría</Label>
                 <Select 
                   value={newIndicator.category} 
-                  onValueChange={(value) => setNewIndicator(prev => ({ ...prev, category: value }))}
+                  onValueChange={(value) => setNewIndicator(prev => ({ ...prev, category: value as PerformanceIndicator['category'] }))}
                 >
                   <SelectTrigger>
                     <SelectValue />
