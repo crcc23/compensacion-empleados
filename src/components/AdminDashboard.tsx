@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,15 +16,14 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { employeeProgress, performanceIndicators, calculateCompensation } from '@/data/mockData';
-import EmployeeDetailsSection from './EmployeeDetailsSection';
 import ValidationModal from './ValidationModal';
 import WeightConfigurationView from './WeightConfigurationView';
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('all');
   const [selectedEmployee, setSelectedEmployee] = useState<any>(null);
-  const [showDetailsSection, setShowDetailsSection] = useState(false);
   const [showValidationModal, setShowValidationModal] = useState(false);
   const [showWeightConfig, setShowWeightConfig] = useState(false);
 
@@ -58,8 +58,7 @@ const AdminDashboard = () => {
   );
 
   const handleViewDetails = (employee: any) => {
-    setSelectedEmployee(employee);
-    setShowDetailsSection(true);
+    navigate(`/employee/${employee.id}`);
   };
 
   const handleValidate = (employee: any) => {
@@ -70,11 +69,6 @@ const AdminDashboard = () => {
   const handleValidationComplete = () => {
     // Refresh data after validation
     console.log('Validation completed, refreshing data...');
-  };
-
-  const handleCloseDetails = () => {
-    setShowDetailsSection(false);
-    setSelectedEmployee(null);
   };
 
   // Show Weight Configuration View
@@ -249,14 +243,6 @@ const AdminDashboard = () => {
           </div>
         </CardContent>
       </Card>
-
-      {/* Employee Details Section - Traditional view */}
-      {showDetailsSection && (
-        <EmployeeDetailsSection
-          employee={selectedEmployee}
-          onClose={handleCloseDetails}
-        />
-      )}
 
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
