@@ -61,10 +61,12 @@ const Header = () => {
                 <span>Mi Perfil</span>
               </DropdownMenuItem>
               
-              <DropdownMenuItem>
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Configuración</span>
-              </DropdownMenuItem>
+              {user?.role === 'admin' && (
+                <DropdownMenuItem onClick={() => window.location.href = '/configuration'}>
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Configuración</span>
+                </DropdownMenuItem>
+              )}
               
               <DropdownMenuSeparator />
               
